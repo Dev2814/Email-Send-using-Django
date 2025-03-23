@@ -19,7 +19,7 @@ A Django-based web application for user authentication with email notifications.
 - **Backend**: Django (Python)
 - **Frontend**: HTML, CSS, JavaScript
 - **Email Sending**: Django's `send_mail` and `EmailMultiAlternatives`
-- **Database**: SQLite (default Django database)
+- **Database**: MySQL via XAMPP
 
 ## Setup
 
@@ -40,17 +40,34 @@ A Django-based web application for user authentication with email notifications.
    pip install -r requirements.txt
    ```
 
-4. **Apply migrations**:
+4. **Configure MySQL Database**:
+   - Ensure XAMPP is running MySQL.
+   - Create a database in phpMyAdmin (e.g., `sendingemail_db`).
+   - Update `settings.py` with:
+     ```python
+     DATABASES = {
+         'default': {
+             'ENGINE': 'django.db.backends.mysql',
+             'NAME': 'sendingemail_db',
+             'USER': 'root',
+             'PASSWORD': '',
+             'HOST': 'localhost',
+             'PORT': '3306',
+         }
+     }
+     ```
+
+5. **Apply migrations**:
    ```bash
    python manage.py migrate
    ```
 
-5. **Run the server**:
+6. **Run the server**:
    ```bash
    python manage.py runserver
    ```
 
-6. **Create a superuser (optional)**:
+7. **Create a superuser (optional)**:
    ```bash
    python manage.py createsuperuser
    ```
@@ -69,7 +86,7 @@ SendingEmailApp/
 │   ├── views.py             # App views
 │   └── urls.py              # App-specific routes
 ├── manage.py                # Django entry point
-└── db.sqlite3               # Default database
+└── requirements.txt         # Python dependencies
 ```
 
 ## Screenshots
