@@ -1,0 +1,147 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Clean modern font */
+}
+
+/* Full-page Centering */
+body {
+    background-color: #fcfcfc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Signup Form Container */
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05); /* Soft outer shadow */
+    width: 360px;
+}
+
+/* Headings for each field */
+.login-box h2 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Input Field Wrapper */
+.input-box {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    position: relative;
+}
+
+/* Input Styles */
+.input-box input {
+    border: none;
+    background: none;
+    outline: none;
+    width: 100%;
+    padding: 0 8px;
+    font-size: 14px;
+}
+
+/* Icon inside input fields */
+.input-box .icon {
+    color: #999;
+}
+
+/* Checkbox and Forgot Password Row */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+/* Forgot password link */
+.options a {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+/* Submit Button */
+.sign-in {
+    width: 100%;
+    background: #111;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Bottom Signup/Login Text */
+.signup-text {
+    text-align: center;
+    font-size: 14px;
+}
+
+.signup-text a {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+/* Popup container for alert messages */
+.popup-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Default popup style */
+.popup {
+    background: #ffcccc;
+    color: #900;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 280px;
+    text-align: center;
+    animation: fadein 0.3s ease-out;
+}
+
+/* Success message styling */
+.popup.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+/* Error message styling */
+.popup.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Fade-in animation for popup */
+@keyframes fadein {
+    from { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}

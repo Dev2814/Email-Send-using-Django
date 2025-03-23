@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Page Title -->
+  <title>EmailSending App</title>
+
+  <!-- Link to External CSS -->
+  <link rel="stylesheet" href="/static/css/index.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+  <!-- Display Django messages as popups -->
+  {% if messages %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.getElementById("popupContainer");
+      {% for message in messages %}
+        const popup = document.createElement("div");
+        popup.className = "popup {{ message.tags }}"; // Use Django message tag for styling
+        popup.textContent = "{{ message }}"; // Message content
+        container.appendChild(popup);
+        setTimeout(() => popup.remove(), 3000); // Auto-dismiss after 3 seconds
+      {% endfor %}
+    });
+  </script>
+  {% endif %}
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav>
+    <div class="nav-left">Emailsending App</div>
+    <div class="nav-center">Hello, {{ user.username }}</div> <!-- Display logged-in user's name -->
+    <a href="{% url 'logout_user' %}" class="logout">Logout</a> <!-- Logout link -->
+  </nav>
+
+  <!-- Welcome Message -->
+  <div class="welcome-box">
+    <h1>Welcome to the EmailSending App</h1>
+    <p>Thank you for visiting. You're all set to explore the app!</p>
+  </div>
+
+  <!-- Popup container for Django messages -->
+  <div class="popup-container" id="popupContainer"></div>
+
+  <!-- Link to External JS -->
+  <script src="/static/js/index.js"></script>
+</body>
+</html>

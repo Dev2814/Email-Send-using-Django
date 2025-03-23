@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signup Page</title>
+
+  <!-- Link to external CSS for styling -->
+  <link rel="stylesheet" href="/static/css/signup.css" />
+
+  <!-- Google Fonts for consistent typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+
+<!-- Handle Django messages (like form errors or success messages) -->
+{% if messages %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const container = document.getElementById("popupContainer");
+    {% for message in messages %}
+      const popup = document.createElement("div");
+      popup.className = "popup {{ message.tags }}";  // Applies success/error class based on message type
+      popup.textContent = "{{ message }}";
+      container.appendChild(popup);
+      setTimeout(() => popup.remove(), 3000);  // Auto remove after 3 seconds
+    {% endfor %}
+  });
+</script>
+{% endif %}
+
+<body>
+  <div class="container">
+
+    <!-- Signup Form -->
+    <form class="login-box" method="POST" id="signupForm" action="{% url 'signup_user' %}"> 
+      {% csrf_token %}
+
+      <!-- First Name -->
+      <h2>First Name</h2>
+      <div class="input-box">
+        <span class="icon">👤</span>
+        <input type="text" name="firstname" id="firstName" placeholder="Enter your First Name">
+      </div>
+
+      <!-- Last Name -->
+      <h2>Last Name</h2>
+      <div class="input-box">
+        <span class="icon">👤</span>
+        <input type="text" name="lastname" id="lastName" placeholder="Enter your Last Name">
+      </div>
+
+      <!-- Username -->
+      <h2>Username</h2>
+      <div class="input-box">
+        <span class="icon">👤</span>
+        <input type="text" name="username" id="username" placeholder="Choose a Username">
+      </div>
+
+      <!-- Email -->
+      <h2>Email</h2>
+      <div class="input-box">
+        <span class="icon">@</span>
+        <input type="email" name="email" id="email" placeholder="Enter your Email">
+      </div>
+
+      <!-- Password -->
+      <h2>Password</h2>
+      <div class="input-box">
+        <span class="icon">🔒</span>
+        <input type="password" name="password" id="password" placeholder="Enter your Password">
+      </div>
+
+      <!-- Confirm Password -->
+      <h2>Confirm Password</h2>
+      <div class="input-box">
+        <span class="icon">🔒</span>
+        <input type="password" name="confirm_password" id="confirmPassword" placeholder="Confirm your Password">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="sign-in">Sign Up</button>
+
+      <!-- Redirect to login -->
+      <p class="signup-text">Already have an account? <a href="{% url 'Login_user' %}">Login</a></p>
+    </form>
+
+    <!-- Message popup container (used by Django messages and client-side JS) -->
+    <div class="popup-container" id="popupContainer"></div>
+  </div>
+
+  <!-- Link to external JS for form validation -->
+  <script src="/static/js/Signup.js"></script>
+</body>
+</html>

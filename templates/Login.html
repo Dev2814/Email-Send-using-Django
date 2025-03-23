@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <link rel="stylesheet" href="/static/css/Login.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  {% if messages %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.getElementById("popupContainer");
+      {% for message in messages %}
+        const popup = document.createElement("div");
+        popup.className = "popup {{ message.tags }}";
+        popup.textContent = "{{ message }}";
+        container.appendChild(popup);
+        setTimeout(() => popup.remove(), 3000);
+      {% endfor %}
+    });
+  </script>
+{% endif %}
+</head>
+<body>
+  <div class="container">
+    <form class="login-box" method="POST" id="loginForm">
+      {% csrf_token %}
+      <h2>Username</h2>
+      <div class="input-box">
+        <span class="icon">👤</span>
+        <input type="text" name="username" id="username" placeholder="Enter your Username">
+      </div>
+
+      <h2>Password</h2>
+      <div class="input-box">
+        <span class="icon">🔒</span>
+        <input type="password" name="password" id="password" placeholder="Enter your Password">
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox" /> Remember me</label>
+        <a href="#">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="sign-in">Sign In</button>
+      <p class="signup-text">Don't have an account? <a href="{% url 'signup_user' %}">Sign Up</a></p>
+    </form>
+
+    <!-- Popup -->
+    <div class="popup-container" id="popupContainer"></div>
+  </div>
+
+  <script src="/static/js/Login.js"></script>
+</body>
+</html>
